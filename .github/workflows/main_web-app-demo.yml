@@ -64,6 +64,11 @@ jobs:
               --settings \
                 PORT="${{ secrets.PORT }}" \
                 MESSAGE="${{ secrets.MESSAGE }}"
+
+      - name: Create production environment file
+        run: |
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "MESSAGE=${{ secrets.MESSAGE }}" >> .env
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
