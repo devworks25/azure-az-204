@@ -34,16 +34,6 @@ jobs:
         with:
           name: node-app
           path: .
-      - name: Set environment variables
-        uses: azure/cli@v2
-        with:
-          inlineScript: |
-            az webapp config appsettings set \
-              --name web-app-demo \
-              --resource-group app-resource-group \
-              --settings \
-                PORT="${{ vars.PORT }}" \
-                MESSAGE="${{ vars.MESSAGE }}"
 
   deploy:
     runs-on: ubuntu-latest
@@ -64,7 +54,16 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_18C76261DDC44AF9ADFE765ABB155289 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_AE1B0ACF22C2446BB7398AA6911AD91D }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3FDAB95919FE49C58B779512884C0DD9 }}
-
+      - name: Set environment variables
+        uses: azure/cli@v2
+        with:
+          inlineScript: |
+            az webapp config appsettings set \
+              --name web-app-demo \
+              --resource-group app-resource-group \
+              --settings \
+                PORT="${{ vars.PORT }}" \
+                MESSAGE="${{ vars.MESSAGE }}"
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
