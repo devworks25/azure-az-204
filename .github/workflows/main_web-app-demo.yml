@@ -34,6 +34,16 @@ jobs:
         with:
           name: node-app
           path: .
+      - name: Set environment variables
+        uses: azure/cli@v2
+        with:
+          inlineScript: |
+            az webapp config appsettings set \
+              --name web-app-demo \
+              --resource-group <YOUR_RESOURCE_GROUP> \
+              --settings \
+                PORT="${{ vars.PORT }}" \
+                MESSAGE="${{ vars.MESSAGE }}"
 
   deploy:
     runs-on: ubuntu-latest
