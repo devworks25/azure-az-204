@@ -40,7 +40,7 @@ jobs:
           inlineScript: |
             az webapp config appsettings set \
               --name web-app-demo \
-              --resource-group <YOUR_RESOURCE_GROUP> \
+              --resource-group app-resource-group \
               --settings \
                 PORT="${{ vars.PORT }}" \
                 MESSAGE="${{ vars.MESSAGE }}"
