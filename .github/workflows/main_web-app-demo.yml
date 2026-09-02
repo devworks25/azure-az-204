@@ -62,8 +62,8 @@ jobs:
               --name web-app-demo \
               --resource-group app-resource-group \
               --settings \
-                PORT="${{ vars.PORT }}" \
-                MESSAGE="${{ vars.MESSAGE }}"
+                PORT="${{ secrets.PORT }}" \
+                MESSAGE="${{ secrets.MESSAGE }}"
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
