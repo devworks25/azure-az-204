@@ -10,6 +10,13 @@ const PORT = process.env.PORT || 3000;
 
 var app = express();
 
+require("dotenv").config();
+
+console.log("=== ENV TEST ===");
+console.log("MESSAGE:", process.env.MESSAGE);
+console.log("PORT:", process.env.PORT);
+console.log("================");
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
